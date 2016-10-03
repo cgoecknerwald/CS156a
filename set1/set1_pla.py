@@ -110,8 +110,8 @@ for i in range(num_tests):
 	sum_incorrectness += perceptron(10)[1]
 
 print ("N = 10")
-print sum_iterations/num_tests
-print sum_incorrectness/num_tests
+print "Average iterations:", sum_iterations/num_tests
+print "Average incorrectness:", sum_incorrectness/num_tests
 
 # test PLA for N = 100
 num_tests = 1000
@@ -121,10 +121,18 @@ for i in range(num_tests):
 	sum_iterations += perceptron(100)[0]
 	sum_incorrectness += perceptron(100)[1]
 
-print ("N = 100")
-print sum_iterations/num_tests
-print sum_incorrectness/num_tests
+print ("\nN = 100")
+print "Average iterations:", sum_iterations/num_tests
+print "Average incorrectness:", sum_incorrectness/num_tests
 
-
+# EXAMPLE OUTPUT FROM ONE RUN
+#
+# N = 10
+# Average iterations: 0.882
+# Average incorrectness: 0.11017
+# 
+# N = 100
+# Average iterations: 881.502
+# Average incorrectness: 0.01409
 
 
