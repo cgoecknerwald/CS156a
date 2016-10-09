@@ -27,14 +27,10 @@ def perceptron(N):
     def classify(x1, x2):
         return numpy.sign(x2 - f(x1))
 
-    # array of data points
-    data_points = []
-
-    weight_vector = [0, 0, 0]
-
     # generate the data points 
-    # one point = [threshold=1, x coord, y coord]
+    # one point = [bias=1, x coord, y coord]
     # N is supplied by user
+    data_points = []
     for n in range(N):
         data_points.append([1, random.uniform(-1,1),random.uniform(-1,1)])
 
@@ -43,98 +39,104 @@ def perceptron(N):
     # h(x) = sign(w dot x)
     # index is the index of the data_point in question
     # this function is dependent on a weight_vector
-    def h(index, arr):
-        return numpy.sign(weight_vector[0]*arr[index][0]+weight_vector[1]*arr[index][1]+weight_vector[2]*arr[index][2])
-    
-    # keep track whenever a misclassified point causes the weight vector to change
-    num_iterations = 0
+    weight_vector = [0, 0, 0]
+    def h(x):
+        return numpy.sign(numpy.dot(weight_vector, x))
 
-    # index is used to cycle through the data_point array
-    # index+=1 is used to advance when a correctly classified point is discovered
-    # index is reset to 0 when a misclassified point is discovered
-    index = 0
 
-    # the loop ends upon successful traversal of data_points without misclassified points
-    # N is the length of data_points used initially
-    while index < N:
-        # DEBUGGING CODE :)
-        # arr = []
-        # for k in range(N):
-        #   arr.append("%d, %d" % (classify(data_points[k][1], data_points[k][2]), h(k)))
-        # print index
-        # print arr
+    def iterate():
+        # keep track whenever a misclassified point causes the weight vector to change
+        num_iterations = 0
+        index = 0
+        # the loop ends upon successful traversal of data_points without misclassified points
+        while index < N:
+            # DEBUGGING CODE :)
+            # arr = []
+            # for k in range(N):
+            #   arr.append("%d, %d" % (classify(data_points[k][1], data_points[k][2]), h(k)))
+            # print index
+            # print arr
 
-        # discover if a point is misclassifed.
-        # If the classification of the data_point at index 
-        # is different from the algorithm function h's classification,
-        # update the weight vector.
-        correct_sign = classify(data_points[index][1], data_points[index][2])
-        if h(index, data_points) != correct_sign:
-            # weight_vector = weight_vector + sign*point_vector
-            # j is used to iterate through the 3-d weight and point vectors
-            for j in range(3):
-                weight_vector[j] = weight_vector[j] + correct_sign*data_points[index][j]
-            # since we updated a point, restart cycling through the array
-            index = 0
-            # keep track of the number of iterations
-            num_iterations += 1
-        # the point at index is not misclassified
-        else:
-            # update index to move forward in the array
-            index += 1
+            # discover if a point is misclassifed.
+            # If the classification of the data_point at index 
+            # is different from the algorithm function h's classification,
+            # update the weight vector.
+            correct_sign = classify(data_points[index][1], data_points[index][2])
+            if h(data_points[index]) != correct_sign:
+                # weight_vector = weight_vector + sign*point_vector
+                # j is used to iterate through the 3-d weight and point vectors
+                for j in xrange(3):
+                    weight_vector[j] = weight_vector[j] + correct_sign*data_points[index][j]
+                # since we updated a point, restart cycling through the array
+                index = 0
+                # keep track of the number of iterations
+                num_iterations += 1
+            # the point at index is not misclassified
+            else:
+                # update index to move forward in the array
+                index += 1
 
-    # generate C number of data points to test correctness
+        return num_iterations
+
+    # generate num_test_points number of data points to test correctness
     # one point = [threshold=1, x coord, y coord]
-    test_points = []
-    num_incorrect = 0
-    C = 100
-    for n in range(C):
-        test_points.append([1, random.uniform(-1,1),random.uniform(-1,1)])
-    for c in range(C):
-        correct_sign1 = classify(test_points[c][1], test_points[c][2])
-        if h(c, test_points) != correct_sign1:
-            num_incorrect += 1
+    def get_incorrectness():
+        num_incorrect = 0
+        num_test_points = 100
+        for n in xrange(num_test_points):
+            test_point = [1, random.uniform(-1,1),random.uniform(-1,1)]
+            correct_sign1 = classify(test_point[1], test_point[2])
+            if h(test_point) != correct_sign1:
+                num_incorrect += 1
 
-    incorrectness = num_incorrect/C
+        return num_incorrect/num_test_points
 
-    return [num_iterations, incorrectness] 
+    return [iterate(), get_incorrectness()] 
 
 # perceptron code ends
 
-# test PLA for N = 10
-num_tests = 1000
-sum_iterations = 0
-sum_incorrectness = 0
-for i in range(num_tests):
-    temp_arr = perceptron(10)
-    sum_iterations += temp_arr[0]
-    sum_incorrectness += temp_arr[1]
+def experiment(num_tests):
+    # test PLA for N = 10
+    N = 10
+    sum_iterations = 0
+    sum_incorrectness = 0
+    for i in range(num_tests):
+        temp_arr = perceptron(N)
+        sum_iterations += temp_arr[0]
+        sum_incorrectness += temp_arr[1]
 
-print ("N = 10")
-print "Average iterations:", sum_iterations/num_tests
-print "Average incorrectness:", sum_incorrectness/num_tests
+    print "Number of tests:", num_tests
+    print ("\nN = 10")
+    print "Average iterations:", sum_iterations/num_tests
+    print "Average incorrectness:", sum_incorrectness/num_tests
 
-# test PLA for N = 100
-num_tests = 1000
-sum_iterations = 0
-sum_incorrectness = 0
-for i in range(num_tests):
-    temp_arr = perceptron(100)
-    sum_iterations += temp_arr[0]
-    sum_incorrectness += temp_arr[1]
+    # test PLA for N = 100
+    N = 100
+    sum_iterations = 0
+    sum_incorrectness = 0
+    for i in range(num_tests):
+        temp_arr = perceptron(N)
+        sum_iterations += temp_arr[0]
+        sum_incorrectness += temp_arr[1]
 
-print ("\nN = 100")
-print "Average iterations:", sum_iterations/num_tests
-print "Average incorrectness:", sum_incorrectness/num_tests
+    # Print out the data
+    print ("\nN = 100")
+    print "Average iterations:", sum_iterations/num_tests
+    print "Average incorrectness:", sum_incorrectness/num_tests
+
+# RUN THE EXPERIMENT 
+num_tests = 100
+experiment(num_tests)
 
 # EXAMPLE OUTPUT FROM ONE RUN
-#
+# Number of tests: 10000
+# 
 # N = 10
-# Average iterations: 0.882
+# Average iterations: 11.29
 # Average incorrectness: 0.11017
 # 
 # N = 100
-# Average iterations: 881.502
+# Average iterations: 165.03
 # Average incorrectness: 0.01409
 
 
