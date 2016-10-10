@@ -6,7 +6,7 @@ from __future__ import division
 import random
 import numpy
 
-# returns [the number of iterations for h to approximate f, the approximate correctness of h to f]
+# returns [num_iterations for h to approximate f, incorrectness]
 # n is the number of points that the algorithm is trained on
 def perceptron(N):
     # data space X = [-1, 1] by [-1, 1]
@@ -93,7 +93,7 @@ def perceptron(N):
 
     return [iterate(), get_incorrectness()] 
 
-# perceptron code ends
+# \\ perceptron function
 
 def experiment(num_tests):
     # test PLA for N = 10
