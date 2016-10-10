@@ -18,7 +18,7 @@
 
 \paragraph{1)} B. 0.01
 
-	See the Hoeffding code. For 100,000 repititions, the average value of $v_{min}$ was about 0.0376.
+	See the Hoeffding code. For 100,000 repititions, the average value of $v_{min}$ was about 0.0376. This makes sense because we are each time choosing the coin with the minimum number of heads, skewing the distribution. 
 
 \paragraph{2)} D. $c_1$ and $c_{rand}$
 
@@ -65,14 +65,14 @@
 
 \paragraph{8)} D. 0.5
 
-	See the non-linear transformation code. For 1,000 repititions, the average in-sample error for the non-transformed data was 0.51429. 
+	See the non-linear transformation code. For 1,000 repititions, the average in-sample error for the non-transformed data was 0.51429. This makes sense because the data is not yet linearly separable.
 
-\paragraph{9)} A. sign$(-1 - 0.05*x_1 + 0.08*x_2 + 0.13*x_1*x_2 + 1.5*x_1**2 + 1.5*x_2**2)$
+\paragraph{9)} A. sign$(-1 - 0.05x_1 + 0.08x_2 + 0.13x_1x_2 + 1.5x_1^2 + 1.5x_2^2)$
 
-	See the non-linear transformation code. For 1000 test data points, the functions a - e had accuracy rates of 0.952, 0.693, 0.677, 0.614, and 0.547, respectively. Thus, [a] most resembles the hypothesis found.
+	See the non-linear transformation code. For 1000 test data points, the functions a - e had accuracy rates of 0.952, 0.693, 0.677, 0.614, and 0.547, respectively. Thus, [a] most resembles the hypothesis found. This makes sense because the algorithm should weight the $x_1^2$ and $x_2^2$ strongly. But, since there's a .1 chance of classification corruption, it's not perfectly weighted.
 
 \paragraph{10)} A. 0
 
-	See the non-linear transformation code. For 1,000 repititions, the average out-sample error for the transformed data was 0.033848.
+	See the non-linear transformation code. For 1,000 repititions, the average out-sample error for the transformed data was 0.033848. This makes sense because the data has been transformed so that the linear regression algorithm can sensibly work with it. That is, the data now contains the data points $x_1^2$ and $x_2^2$.
 
 \end{document}

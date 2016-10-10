@@ -169,7 +169,7 @@ def experiment_pla(num_tests):
 
 
 # RUN THE EXPERIMENT
-num_tests = 10000
+num_tests = 1000
 experiment_linear(num_tests)
 experiment_pla(num_tests)
 

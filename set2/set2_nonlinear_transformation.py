@@ -158,15 +158,15 @@ def experiment_prob8(num_tests):
     def g(x):
         return numpy.sign(numpy.dot(weight_vector, x))
     def g_a(x1, x2):
-        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 0.13*x1*x2 + 1.5*x1**2 + 1.5*x2**2)
+        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 0.13*x1*x2 + 1.5*(x1**2) + 1.5*(x2**2))
     def g_b(x1, x2):
-        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 0.13*x1*x2 + 1.5*x1**2 + 15*x2**2)
+        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 0.13*x1*x2 + 1.5*(x1**2) + 15*(x2**2))
     def g_c(x1, x2):
-        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 0.13*x1*x2 + 15*x1**2 + 1.5*x2**2)
+        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 0.13*x1*x2 + 15*(x1**2) + 1.5*(x2**2))
     def g_d(x1, x2):
-        return numpy.sign(-1 - 1.5*x1 + 0.08*x2 + 0.13*x1*x2 + 0.05*x1**2 + 0.05*x2**2)
+        return numpy.sign(-1 - 1.5*x1 + 0.08*x2 + 0.13*x1*x2 + 0.05*(x1**2) + 0.05*(x2**2))
     def g_e(x1, x2):
-        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 1.5*x1*x2 + 0.15*x1**2 + 0.15*x2**2)
+        return numpy.sign(-1 - 0.05*x1 + 0.08*x2 + 1.5*x1*x2 + 0.15*(x1**2) + 0.15*(x2**2))
 
     # test linear regression for N = 1000 classified points
     N = 1000
