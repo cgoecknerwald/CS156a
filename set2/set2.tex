@@ -22,16 +22,16 @@
 
 \paragraph{2)} D. $c_1$ and $c_{rand}$
 
-	See the Hoeffding code. For 100,000 repititions, the average value of $c_1$ and $c_{rand}$ were about 0.5. This satisifies the single-bin Hoeffding Inequality because it 
+	See the Hoeffding code. For 100,000 repititions, the average value of $c_1$ and $c_{rand}$ were about 0.5. They satisify the single-bin Hoeffding Inequality because they closely resemble the $\mu$ value of 0.5. Because these are fair coins, $\mu$, the true distribution of the number of heads in 10 coin flips, should be approximately 0.5. The values $v_1$, $v_{min}$ and $v_{rand}$ are different ways of sampling the (coin distribution) bin. But, only $c_1$ and $c_{rand}$ approximate $\mu$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Error and Noise}
 
 \paragraph{3)} E. $\lambda \mu + (1 - \lambda)(1 - \mu)$
 
-	Function $h$ approximates $f$ with error $\mu$. But there is a $1-\lambda$ chance that $f$ is wrong. We can determine the probability that $h$ incorrectly approximates $y$ with a decision tree. \newpage
+	Function $h$ approximates $f$ with error $\mu$. But there is a $1-\lambda$ chance that $f$ is wrong. We can determine the probability that $h$ incorrectly approximates $y$ with a decision tree. Note that the functions are binary. This means that if $h$ incorrectly approximates a corrupted $f$, then $h$ has correctly found $y$. \newpage
 
-\paragraph{4)}
+\paragraph{4)} B. 0.5
 
 	\begin{align*}
 	P(h(x) \neq y) &= \lambda \mu + (1 - \lambda)(1 - \mu) \\
@@ -43,7 +43,7 @@
 	\lambda &= \frac{1}{2}
 	\end{align*}
 
-	Thus, when $\lambda = \frac{1}{2}$, $\mu$ is irrelevant to the output of $P(h(x) \neq y)$.
+	Thus, when $\lambda = \frac{1}{2}$, $\mu$ cannot affect the output of $P(h(x) \neq y)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Linear Regression}

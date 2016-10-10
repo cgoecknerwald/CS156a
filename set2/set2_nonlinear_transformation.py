@@ -147,10 +147,10 @@ def experiment(num_tests):
 
     # Print the results
     print "Number of tests of no-transform linear regression:", num_tests
-    print "\nN =", N
+    print "N =", N
     print "Average in-sample error:", sum_in_sample_error/num_tests
-    print "Number of tests of transformed linear regression:", num_tests
-    print "\nN =", N
+    print "\nNumber of tests of transformed linear regression:", num_tests
+    print "N =", N
     print "Average out-sample error:", sum_out_sample_error/num_tests
   
 def experiment_prob8(num_tests):
@@ -190,7 +190,7 @@ def experiment_prob8(num_tests):
             g_accuracy_arr[4] += int(sign_g == g_e(x1, x2))
         for k in xrange(5):
             g_accuracy_arr[k] = g_accuracy_arr[k]/num_test_points
-        print g_accuracy_arr
+        print "\nG functions accuracy:", g_accuracy_arr
         # \\ num_test_points
 
     # \\ num_tests
@@ -198,16 +198,17 @@ def experiment_prob8(num_tests):
 # RUN THE EXPERIMENT
 num_tests = 1000
 experiment(num_tests)
-num_tests = 5
+num_tests = 1
 experiment_prob8(num_tests)
 
 # EXAMPLE OUTPUT
 # Number of tests of no-transform linear regression: 1000
-#
 # N = 1000
 # Average in-sample error: 0.51429
 #
 # Number of tests of transformed linear regression: 1000
-#
 # N = 1000
 # Average out-sample error: 0.033848
+#
+# G functions accuracy: [0.955, 0.656, 0.662, 0.631, 0.548]
+

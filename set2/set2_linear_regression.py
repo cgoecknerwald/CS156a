@@ -21,7 +21,12 @@ def perceptron(N, weight_vector, data_points, y, f):
     def h(x):
         return numpy.sign(numpy.dot(weight_vector, x))
 
-    def iterate():
+    def update_weight_vector(weight_vector, data_point, correct_sign):
+        for j in xrange(len(weight_vector)):
+            weight_vector[j] = weight_vector[j] + correct_sign*data_point[j]
+        return weight_vector
+
+    def iterate(weight_vector):
         # keep track whenever a misclassified point causes the weight vector to change
         num_iterations = 0
         # index used to determine when to quit iterating
@@ -34,8 +39,7 @@ def perceptron(N, weight_vector, data_points, y, f):
             if h(data_points[index]) != correct_sign:
                 # weight_vector = weight_vector + sign*point_vector
                 # j is used to iterate through the 3-d weight and point vectors
-                for j in xrange(3):
-                    weight_vector[j] = weight_vector[j] + correct_sign*data_points[index][j]
+                weight_vector = update_weight_vector(weight_vector, data_points[index], correct_sign)
                 # since we updated a point, restart cycling through the array
                 index = 0
                 # keep track of the number of iterations
@@ -47,12 +51,13 @@ def perceptron(N, weight_vector, data_points, y, f):
 
         return num_iterations
 
-    return iterate()
+    return iterate(weight_vector)
 
 # \\ perceptron function
 
-# returns [in_sample_error, out_sample_error, all weight_vectors, the data_points trained on, the function used to classify]
-# n is the number of points that the algorithm is trained on
+# returns [in_sample_error, out_sample_error, all weight_vectors, the data_points trained on, 
+# the classifications, and the function used to classify]
+# N is the number of points that the algorithm is trained on
 def linear_regression(N):
     # data space X = [-1, 1] by [-1, 1]
     # dimensionality = 2
@@ -61,11 +66,9 @@ def linear_regression(N):
     point1 = [random.uniform(-1,1), random.uniform(-1,1)]
     point2 = [random.uniform(-1,1), random.uniform(-1,1)]
     slope = (point1[1] - point2[1]) / (point1[0] - point2[0])
-
     # Our target function, f, is a random line.
     def f(x): 
         return slope*(x - point1[0]) + point1[1]
-
     # Classifies a point (x1,x2) based on location relative to line
     # If the point is above the line, return 1. If on the line, 0. Otherwise, -1.
     # This is based off of our target function 'f' 
@@ -74,7 +77,6 @@ def linear_regression(N):
 
     # array of data points
     data_points = []
-
     # generate the data points 
     # one point = [bias=1, x coord, y coord]
     # N is supplied by user
@@ -142,13 +144,10 @@ def experiment_linear(num_tests):
     # keep track of the avg incorrectness
     sum_in_sample_error = 0
     sum_out_sample_error = 0
-    # keep track of g(x) by storing the weight vector
-    weight_vector_arr = []
     for i in range(num_tests):
-        temp_arr = linear_regression(N)
-        sum_in_sample_error += temp_arr[0]
-        sum_out_sample_error += temp_arr[1]
-
+        in_sample_error, out_sample_error, _, _, _, _ = linear_regression(N)
+        sum_in_sample_error += in_sample_error
+        sum_out_sample_error += out_sample_error
     # Print the results
     print "Number of tests:", num_tests
     print "\nN = 100"
@@ -170,7 +169,7 @@ def experiment_pla(num_tests):
 
 
 # RUN THE EXPERIMENT
-num_tests = 1000
+num_tests = 10000
 experiment_linear(num_tests)
 experiment_pla(num_tests)
 
