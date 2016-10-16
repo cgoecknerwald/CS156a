@@ -1,0 +1,105 @@
+% Claire Goeckner-Wald
+
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\begin{document}
+
+\title{Set 3}
+\author{Claire Goeckner-Wald}
+\maketitle 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Generalization Error}
+
+\paragraph{1)} A. 500
+
+	\begin{align*}
+	0.03 &\geq 2 M e ^{-2(\epsilon)^2N} \\
+	0.03 &\geq 2 (1) e ^{-2(0.05)^2N} \\
+	0.03 &\geq 2 e ^{(-.005)N} \\
+	\frac{0.03}{2} &\geq e ^{(-.005)N} \\
+	\ln (\frac{0.03}{2}) &\geq (-.005)N \\
+	\frac{\ln (\frac{0.03}{2})}{-.005} &\geq N \\
+	\frac{\ln (\frac{0.03}{2})}{-.005} &\approx 840 \\
+	\end{align*}
+
+\paragraph{2)} B. 1000
+
+	\begin{align*}
+	0.03 &\geq 2 M e ^{-2(\epsilon)^2N} \\
+	0.03 &\geq 2 (10) e ^{-2(0.05)^2N} \\
+	0.03 &\geq 20 e ^{(-.005)N} \\
+	\frac{0.03}{20} &\geq e ^{(-.005)N} \\
+	\ln (\frac{0.03}{20}) &\geq (-.005)N \\
+	\frac{\ln (\frac{0.03}{20})}{-.005} &\geq N \\
+	\frac{\ln (\frac{0.03}{20})}{-.005} &\approx 1300 \\
+	\end{align*}
+
+
+\paragraph{3)} C. 1500
+
+	\begin{align*}
+	0.03 &\geq 2 M e ^{-2(\epsilon)^2N} \\
+	0.03 &\geq 2 (100) e ^{-2(0.05)^2N} \\
+	0.03 &\geq 200 e ^{(-.005)N} \\
+	\frac{0.03}{200} &\geq e ^{(-.005)N} \\
+	\ln (\frac{0.03}{200}) &\geq (-.005)N \\
+	\frac{\ln (\frac{0.03}{200})}{-.005} &\geq N \\
+	\frac{\ln (\frac{0.03}{200})}{-.005} &\approx 1761 \\
+	\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Break Point}
+
+\paragraph{4)} B. 5
+	
+	Since the $d_{vc}$ is 1 less than the break point, and since $d_{vc} = d + 1$, then for $\mathbb R^3$, then $d = 3$. Thus, the break point is 5.
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Growth Function}
+
+\paragraph{5)} 
+
+	The growth function is polynomial in the case that the hypothesis set has a break point. Otherwise, it is $2^N$.
+
+	\subparagraph{i.} $1 + N$
+
+		As shown in lecture 5, example 1, the growth function is $1 + N$.
+
+	\subparagraph{ii.} $1 + N + \binom{N}{2}$
+
+	\subparagraph{iii.} $\sum_{i=1}^{\lfloor{\sqrt N} \rfloor} \binom{N}{i}$
+
+	\subparagraph{iv.} $2^{\lfloor{N/2}\rfloor}$
+
+		This function is neither polynomial nor $2^N$. Therefore, this is not a possible growth function.
+
+	\subparagraph{v.} $2^N$
+
+		As shown in lecture 5, example 3, the convex set in $\mathbb R^2$ shatters $N$ points. Thus, the growth function is $2^N$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Fun with Intervals}
+
+\paragraph{6)}
+
+\paragraph{7)}
+
+\paragraph{8)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{The Triangle}
+
+\paragraph{9)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Non-Convex Sets: Concentric Circles}
+
+\paragraph{10)}
+
+\end{document}
