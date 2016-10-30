@@ -1,0 +1,87 @@
+% Claire Goeckner-Wald
+
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+
+\newcommand{\sign}{\text{sign}}
+
+\begin{document}
+\title{Problem Set 5}
+\author{Claire Goeckner-Wald}
+\maketitle 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Linear Regression Error} 
+
+\paragraph{1.} [c] 100
+
+	\begin{align*}
+	\sigma &= 0.1 \\
+	d &= 8 \\
+	E_{in} &> 0.008 \\
+	\mathbb E_{\mathcal D}[E_{\text {in}}(\textbf w_{\text {lin}})] &> \sigma^2 (1 - \frac{d+1}{N}) \\
+	\frac{\mathbb E_{\mathcal D}[E_{\text {in}}(\textbf w_{\text {lin}})]}{\sigma^2} &> 1 - \frac{d+1}{N} \\
+	\frac{d+1}{N} &> 1 - \frac{\mathbb E_{\mathcal D}[E_{\text {in}}(\textbf w_{\text {lin}})]}{\sigma^2} \\
+	N &> \frac{d+1}{1 - \frac{\mathbb E_{\mathcal D}[E_{\text {in}}(\textbf w_{\text {lin}})]}{\sigma^2}} \\
+	N &> \frac{8+1}{1 - \frac{0.008}{0.1^2}} \\
+	N &> 45
+	\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Nonlinear Transforms}
+
+\paragraph{2.} [D] $\widetilde {w }_1 < 0, \widetilde {w }_2 > 0$
+
+	\begin{align*}
+	\Phi(1, x_1, x_2) &= (1, x_1^2, x_2^2) \\
+	\sign(\widetilde {\textbf w }^T \cdot \widetilde x) &=  \sign(\widetilde {w }_0 \cdot 1 + \widetilde { w }_1 \cdot \widetilde x_1 + \widetilde { w }_2 \cdot \widetilde x_2)\\
+	\end{align*}
+
+	As $\widetilde x_1$ increases, the function should be more likely to return a negative number. Thus, $\widetilde {w }_1$ should be negative as well. As $ \widetilde x_2$ increases, the function should be more likely to return a positive number. Thus, $\widetilde { w }_2$ should be positive as well.
+
+\paragraph{3.} [D] 20
+
+	The $d_{vc} \leq d + 1$. Here, $d = 15$, so $d_{vc} \leq 16$. Since none of the additional values are linear combinations of $x_1$ and $x_2$, then they are each new dimensions. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Gradient Descent}
+
+\paragraph{4.} [D] $\widetilde{w}_1 < 0; \widetilde{w}_2 > 0$
+
+	\begin{align*}
+	E(u,v) &= (ue^v - 2ve^{-u})^2 \\
+	\frac{\partial E}{\partial u} &= \frac{\partial (ue^v - 2ve^{-u})^2}{\partial u} \\
+	&= 2(ue^v - 2ve^{-u})\cdot(e^v + 2ve^{-u}) \\
+	\end{align*}
+
+\paragraph{5.} [D] 10
+
+	See attached code. 
+
+\paragraph{6.} [E] (0.045, 0.024)
+
+	See attached code. 
+
+\paragraph{7.} [A] $10^{-1}$
+
+	See attached code. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Logistic Regression}
+
+\paragraph{8.} 
+
+\paragraph{9.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{PLA as SGD}
+
+\paragraph{10.} 
+
+\end{document}
+
