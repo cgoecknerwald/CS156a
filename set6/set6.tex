@@ -71,9 +71,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Neural Networks}
 
-\paragraph{8.}
+\paragraph{8.} \textbf{[d]} 45
 
+	Consider how much each operation adds to the total. The number of weights in this situation is $6\cdot(4-1)+4\cdot(1-0) = 22$. We will use $o(\text{operation})$ as a function that returns the number of operations occurred. 
 
+	\textbf{Forward computation: } Compute all $x_j^{(l)}$, starting with $l = 1$. Thus, the number of operations necessary here is equivalent to the number of weights. 
+	\begin{align*}
+	o(w_{ij}^{(l)}x_i^{(l-1)}) = 22
+	\end{align*}
+
+	\textbf{Backward computation: } For each level, we must calculate the $\delta$ for each node. Consider that for $l = 0$ and $l = L$, the number of operations here are 0. This is because for $l=0$, no node takes in a signal. For $l = L$, we do not need to do any operations as we already know the $\delta$. For each $\delta_i^{(l-1)}$, we only need $d^{(l)}$ operations. Thus, for $l = 1$ to $l = L-1$, we take $\sum_{i=0}^{d^{(l)}} d^{(l+1)}$. Here, we only need to calculate the sum for the middle layer, $l = 1$, for which $d^{(1)} = 3$. 
+	\begin{align*}
+	o(w_{ij}^{(l)}\delta_j^{(l)}) &= \sum_{i=1}^{d^{(1)}} d^{(1+1)} \\
+	&= \sum_{i=1}^{3} 1 \\
+	&= 1 + 1 + 1 = 3 \\
+	\end{align*}
+
+	\textbf{Updating the weights:} Each weight is updated once with the operation $w_{ij}^{(l)} = w_{ij}^{(l)} + \eta(x_i^{(l-1)}\delta_j^{(l)})$. Therefore, the number of operations for this calculation is equivalent to the number of weights. 
+	\begin{align*}
+	o(x_i^{(l-1)}\delta_j^{(l)}) = 22
+	\end{align*}
+
+	Totaling these up, we get $22+22+3 = 47$ operations. 47 is closer to 45 than to 50, thus the answer choice.
 
 \paragraph{9.} \textbf{[a]} 46
 	
