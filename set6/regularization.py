@@ -1,3 +1,4 @@
+# Claire Goeckner-Wald, set 6
 import math
 import numpy
 

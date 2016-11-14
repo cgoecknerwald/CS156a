@@ -1,0 +1,65 @@
+% Claire Goeckner-Wald
+
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+
+\begin{document}
+\title{Problem Set Template}
+\author{Claire Goeckner-Wald}
+\maketitle 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Validation}
+
+\paragraph{1)} [d] $k = 6$
+
+	For $k = 6$ and $N = 25$, the validation error is 0.0. See attached code. 
+
+\paragraph{2)} [e] $k = 7$
+
+	For $k = 7$ and $N = 25$, the out-of-sample error is 0.072. See attached code. 
+
+\paragraph{3)} [d] $k = 6$
+
+	For $k = 6$ and $N = 10$, the validation error is 0.08. See attached code. 
+
+\paragraph{4)} [d] $k = 6$
+
+	For $k = 6$ and $N = 10$, the out-of-sample error is 0.192. See attached code. 
+
+\paragraph{5)} [b] 0.1, 0.2
+
+	For problems one and three, the chosen model's out-of-sample errors for $k=7$, where $N=25$ and $N=10$, respectively, are 0.084 and 0.192. This is closet in Euclidean distance to 0.1 and 0.2.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Validation Bias}
+
+\paragraph{6)} [d] 0.5, 0.5, 0.4
+
+	The expected values of $e_1$ and $e_2$ are 0.5, because their expected value is the average of $[0,1]$, which is $\frac{0+1}{2}$. The expected value of $\min{e_1, e_2} = \frac{1}{3}$. See attached code for an experimental proof. 
+
+	\begin{align*}
+	\frac{1}{1^2} \int_0^1 \int_0^1 \min(x, y) dx dy \\
+	\min(x, y) = \frac{x+y}{2} - |x - y| \\
+	\int_0^1 \int_0^1 \big( \frac{x+y}{2} - |x - y| \big) dx dy  = \frac{1}{3}\\
+	\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Cross Validation}
+
+\paragraph{7)} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{PLA versus SVM}
+
+\paragraph{8)} 
+\paragraph{9)} 
+\paragraph{10)} 
+
+\end{document}
+
