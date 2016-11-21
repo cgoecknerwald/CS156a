@@ -19,7 +19,7 @@
 
 \paragraph{1.} [d] a quadratic programming problem with $d+1$ variables
 
-	In the primal problem, we aim to minimize $\frac{1}{2} \bm{w^T}\bm{w}$ with the constraint $y_n(\bm{w^T}x_n +b) \geq 1$ for $n = 1, 2, \dots N$. Because $y_n$ and $x_n$ are given as input data, our variables are $\bm{w}$ and $b$. Note that in this scenario, $\bm{w} = (w_1, w_2, \dots w_d)$, and $b = w_0$. Thus, we have $d+1$ variables. 
+	In the original formulation of the hard-margin SVM problem, we aim to minimize $\frac{1}{2} \bm{w^T}\bm{w}$ with the constraint $y_n(\bm{w^T}x_n +b) \geq 1$ for $n = 1, 2, \dots N$. Because $y_n$ and $x_n$ are given as input data, our only variables are $\bm{w}$ and $b$. Note that in this scenario, $\bm{w} = (w_1, w_2, \dots w_d)$, and $b = w_0$. Thus, we have $d+1$ variables, $\bm{w}$ contributing $d$ variables and $b$ contributing one variable. 
 
 \section*{Polynomial Kernels}
 
@@ -35,7 +35,7 @@
 
 	See attached code. 
 
-\paragraph{5.} [d] Maximum $C$ achieves the lowest $E_in$
+\paragraph{5.} [d] Maximum $C$ achieves the lowest $E_{in}$
 
 	See attached code. 
 
