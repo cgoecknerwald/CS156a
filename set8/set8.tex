@@ -1,0 +1,67 @@
+% Claire Goeckner-Wald
+
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+
+\begin{document}
+\title{Problem Set 8}
+\author{Claire Goeckner-Wald}
+\maketitle 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Primal versus Dual Problem}
+
+\paragraph{1.} [d] a quadratic programming problem with $d+1$ variables
+
+	In the primal problem, we aim to minimize $\frac{1}{2} \bm{w^T}\bm{w}$ with the constraint $y_n(\bm{w^T}x_n +b) \geq 1$ for $n = 1, 2, \dots N$. Because $y_n$ and $x_n$ are given as input data, our variables are $\bm{w}$ and $b$. Note that in this scenario, $\bm{w} = (w_1, w_2, \dots w_d)$, and $b = w_0$. Thus, we have $d+1$ variables. 
+
+\section*{Polynomial Kernels}
+
+\paragraph{2.} [a] 0 versus all
+
+	See attached code. 
+
+\paragraph{3.} [a] 1 versus all
+
+	See attached code. 
+
+\paragraph{4.} [c] 1800
+
+	See attached code. 
+
+\paragraph{5.} [d] Maximum $C$ achieves the lowest $E_in$
+
+	See attached code. 
+
+\paragraph{6.} [b] When $C = 0.001$, the number of support vectors is lower at $Q = 5$.
+
+	See attached code. 
+
+\section*{Cross Validation}
+
+\paragraph{7.} [b] $C = 0.001$ is selected most often.
+
+	See attached code. 
+
+\paragraph{8.} [c] $0.005$
+
+	See attached code. 
+
+\section*{RBF Kernel}
+
+\paragraph{9.} [e] $C = 10^6$
+
+	See attached code. 
+
+\paragraph{10.} [c] $C = 100$
+
+	See attached code. 
+
+\end{document}
+
