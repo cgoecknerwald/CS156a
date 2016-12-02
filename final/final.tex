@@ -1,4 +1,4 @@
-% Claire Goeckner-Wald
+% Claire Goeckner-Wald, CS156a Final 12/2/16
 
 \documentclass[titlepage]{article}
 \usepackage{amsmath}
@@ -98,32 +98,79 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Regularized Linear Regression}
-\paragraph{7.} 
-\paragraph{8.} 
-\paragraph{9.} 
-\paragraph{10.} 
+\paragraph{7.} [d] 8 versus all
+
+	See attached code.
+
+\paragraph{8.} [b] 1 versus all
+
+	See attached code.
+
+\paragraph{9.} [e] The transform improves the out-of-sample performance of ``5 versus all'', but by less than 5\%
+
+	See attached code.
+
+\paragraph{10.} [a] Overfitting occurs (from $\lambda = 1$ to $\lambda = 0.01$)
+
+	See attached code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Support Vector Machines}
-\paragraph{11.} 
-\paragraph{12.} 
+\paragraph{11.} [e] 0, 1, -0.5
+
+	After plotting the points, the value of $z_2$ makes no difference in the classification. Therefore, the value $w_2$ is 0. If a point falls on the plane, it must be 0. So, we must find a $b$ and $z_1$ for this scenario.
+
+	\begin{align*}
+	z &= (0.5, 0) \text{ is on the desired line} \\
+	(1, 0)\cdot(0.5,0) + b &= 0 \\
+	0.5 + b &= 0 \\
+	b &= -0.5
+	\end{align*}
+
+\paragraph{12.} [c] 4-5
+
+	See attached code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Radial Basis Functions}
-\paragraph{13.} 
-\paragraph{14.} 
-\paragraph{15.} 
-\paragraph{16.} 
-\paragraph{17.} 
-\paragraph{18.} 
+\paragraph{13.} [a] $\leq$ 5\% of the time
+
+	See attached code.
+
+\paragraph{14.} [a] or [e]
+
+	See attached code.
+
+\paragraph{15.} [a] or [e]
+
+	See attached code.
+
+\paragraph{16.} [b] or [d]
+
+	See attached code.
+
+\paragraph{17.} [b] or [c]
+
+	See attached code.
+
+\paragraph{18.} [a] or [e]
+
+	See attached code.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Bayesian Priors}
-\paragraph{19.} 
+\paragraph{19.} [b] The posterior increases linearly over [0,1]
+
+	We assume that $P(h=f)$ is uniform over $[0,1]$. Thus, the probability that $h=f$ given no data is uniform. Given a single data point $y = 1$ (that is, a person had a heart attack), we know that $f != 0$. But, we also know that it is still possible that $f != 1$. Therefore, $P(f = 0 | \mathcal D) = 0$ and $P(0 < f < 1 | \mathcal D) != 0$. Thus, we can eliminate answer choices [a] and [d]. We now must determine whether $P(h = f | \mathcal D)$ increases linearly or nonlinearly over [0,1].
+	\begin{align*}
+	P(h=f | \mathcal D) &= \frac{P(\mathcal D | h=f) P (h=f)}{P(\mathcal D)} \propto P(\mathcal D | h=f) P (h=f) \\
+	\end{align*}
+	$P (h=f)$ is a uniform distribution over all hypotheses. $P(\mathcal D | h=f)$ is a linear distribution increasing over [0,1]. This is because, given that one person had a heart attack, the probability that you chose someone with a heart attack is equal to the probability that any given person has a heart attack, which is $h$, which equals $f$. Thus, as $h$ increases, so does $P(\mathcal D | h=f)$, linearly. Therefore, our posterior increases linearly over [0,1].
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Aggregation}
-\paragraph{20.} [c] $E_{\text{out}}(g)$ cannot be worse than the average of $E_{\text{out}}(g_1)$ and $E_{\text{out}}(g_2)$ \textit{is true} \textbf{NOTE: Expand on [c]}
+\paragraph{20.} [c] $E_{\text{out}}(g)$ cannot be worse than the average of $E_{\text{out}}(g_1)$ and $E_{\text{out}}(g_2)$ \textit{is true} 
 
 	\subparagraph{[a]} \textit{False}: $E_{\text{out}}(g)$ can be worse than $E_{\text{out}}(g_1)$. Consider the case where $g_2$ is consistently farther from the target $y = f(\bm x)$ for $\bm x \in \chi$ than $g_1$ is. Then, taking the average of outputs, $E_{\text{out}}(g)$, would be greater than $E_{\text{out}}(g_1)$.
 
