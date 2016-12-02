@@ -1,0 +1,164 @@
+% Claire Goeckner-Wald
+
+\documentclass[titlepage]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{bm}
+\onehalfspacing
+\usepackage{fullpage}
+\newcommand*{\tran}{\intercal}
+\newcommand*{\lin}{\text{lin}}
+\newcommand*{\reg}{\text{reg}}
+
+\begin{document}
+\title{CS 156a Final}
+\author{Claire Goeckner-Wald}
+\maketitle 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Nonlinear Transforms}
+\paragraph{1.} [e] None of the above.
+	
+	The polynomial transform of order $Q = 10$ applied to $\chi$ of dimension $d=2$ results in a $\mathbb Z$ space of dimensionality $\tilde d = 65$, not counting the constant coordinates $x_0 = 1$ and $z_0 = 1$. The polynomial transform of order $Q$ applied to some $x \in \chi = (x_1, x_2)$ consists of all variations of $x_1^ix_2^j$ with non-negative integers $i$ and $j$ satisfying $i+j \leq Q$. For example, the polynomial transform of order $Q = 3$ applied to $\chi$ of dimension $d=2$ is 
+	\begin{align*}
+	z &= (x_1^0x_2^0, x_1^1x_2^0, x_0^0x_2^1, x_1^1x_2^1, x_1^1x_2^2, x_1^2x_2^1, x_1^3x_2^0, x_1^0x_2^3); \\
+	&= (1, x_1, x_2, x_1x_2, x_1x_2^2, x_1^2x_2, x_1^3, x_2^3).
+	\end{align*}
+	In this case, the dimensionality, $\bar d$, of the $\mathbb Z$-space is 7. (We do not count the constant coordinate $z_0$.) Then, for some polynomial transform of order $q$, we have $\tilde d = (\sum_{i=0}^q (q - i) + 1)-1$. Therefore, for $Q=10$, we have $\tilde d = (\sum_{i=0}^{10} (10 - i) + 1)-1$, or $\tilde d = 65$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Bias and Variance}
+\paragraph{2.} [d] $\mathcal H$ is the logistic regression model
+
+	\subparagraph{[a]} If $\mathcal H$ is a singleton, then the chosen hypothesis $g^{\mathcal D}$ will be the same, no matter the data set $\mathcal D$. Thus, when finding the average value of $g^{\mathcal D}$ with respect to $\mathcal D$, the average hypothesis must be the single hypothesis in $\mathcal H$. Therefore, $\bar g \in \mathcal H$.
+
+	\subparagraph{[b]} If $\mathcal H$ is the set of all constant, real-valued hypotheses, then the chosen hypothesis $g^{\mathcal D}$ for some data $\mathcal D$ will be a constant real number $b \in \mathbb R$. Therefore, when finding the average value of $g^{\mathcal D}$ with respect to $\mathcal D$, the expected value of $\bar g$ must also be some real-valued constant $\bar {b} \in \mathbb{R}$. Thus, since $\bar b \in \mathbb R$, then $\mathcal H$ must contain $\bar b$. Therefore, $\bar g \in \mathcal H$.
+
+	\subparagraph{[c]} If $\mathcal H$ is the linear regression model, then it represents hypotheses consisting of a polynomial (or, binomial) with real-valued coefficients. Therefore, when finding the average value of $g^{\mathcal D}$ with respect to $\mathcal D$, the expected value of $\bar g$ must also be some set of real-valued coefficients. Thus, since that set is real-valued, then $\mathcal H$ must contain it as a hypothesis. Therefore, $\bar g \in \mathcal H$.
+
+	\subparagraph{[d]} If $\mathcal H$ is the logistic regression model, then it represents hypotheses as sigmoidal functions. Then, when finding the chosen hypothesis $g^{\mathcal D}$ for some data $\mathcal D$, the hypothesis is a sigmoid ranging from 0 to 1. However, when finding the average value of $g^{\mathcal D}$ with respect to $\mathcal D$, the expected value of $\bar g$ is not necessarily a sigmoid. Given sigmoids $f(x) = \frac{e^{a+bx}}{1+e^{a+bx}}$ and $f(x) = \frac{e^{a+bx}}{1+e^{a+bx}}$, then $h(x) = f(x) + g(x)$ is not necessarily a sigmoid. Since $\mathcal H$ contains sigmoids, $\bar g $ is not necessarily in $\mathcal H$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Overfitting}
+\paragraph{3.} [d] \textit{is false} 
+
+	\subparagraph{[a]} \textit{True}: Overfitting is the result of picking a hypothesis with a higher $E_{out}$ because of a misleadingly low $E_{in}$. Therefore, there must be two or more hypotheses with differing values of $E_{in}$, in order for us to be misled into overfitting.
+
+	\subparagraph{[b]} \textit{True}: If there is overfitting, there must be two or more hypotheses that have different values of $E_{\text{out}}$ because overfitting results in choosing an incorrect hypothesis $g$ with a higher $E_{\text{out}}$ as a cause of a misleadingly lower $E_{\text{in}}$. Thus, there must be two or more hypotheses with different values of $E_{\text{out}}$ in order for overfitting to occur. 
+
+	\subparagraph{[c]} \textit{True}: If there is overfitting, there must be two or more hypotheses that have different values of $(E_{\text{out}} - E_{\text{in}})$. For example, consider the set $\mathcal H$ composed of hypotheses $h_1$ and $h_2$, each with out-sample errors $e_{\text{out},1}$ and $e_{\text{out},2}$ respectively, where $e_{\text{out},1} < e_{\text{out},2}$. Therefore, it is best if we choose that $g = h_1$. Overfitting occurs when $h_2$, the inferior hypothesis, has a misleading low value of $E_{\text{in}}$. Let each hypothesis have in-sample errors $e_{\text{in},1}$ and $e_{in, 2}$. Then, in the case of overfitting, $e_{\text{in},1} > e_{\text{in},2}$. Thus, in the case of overfitting, we have $(e_{\text{out},1} - e_{\text{in},1}) < (e_{\text{out},2} - e_{\text{in},2})$. Therefore, if there is overfitting then two or more hypotheses that have different values of $(E_{\text{out}} - E_{\text{in}})$.
+
+	\subparagraph{[d]} \textit{False}: We cannot always determine if there is overfitting using values of $(E_{\text{out}} - E_{\text{in}})$. Consider hypothesis set $\mathcal H$ with two hypotheses, $h_1$ and $h_2$. In this example, we have no overfitting because we select hypothesis $h_1$ for its superior $E_{in}$
+	\begin{align*}
+	e_{\text{in}, 1} &= 0.2, e_{\text{out}, 1} = 0.5, (e_{\text{out}, 1} - e_{\text{in}, 1}) = 0.3
+	e_{\text{in}, 2} &= 0.6, e_{\text{out}, 2} = 0.7, (e_{\text{out}, 2} - e_{\text{in}, 2}) = 0.1
+	\end{align*}
+	Now, consider hypothesis set $\mathcal H'$ with two hypotheses, $h'_1$ and $h'_2$. In this example, assuming a naive learning algorithm, we have overfitting because we are misled by the misleading in-sample error of $h'_1$.
+	\begin{align*}
+	e_{\text{in}, 1} &= 0.2, e_{\text{out}, 1} = 0.5, (e_{\text{out}, 1} - e_{\text{in}, 1}) = 0.3
+	e_{\text{in}, 2} &= 0.3, e_{\text{out}, 2} = 0.4, (e_{\text{out}, 2} - e_{\text{in}, 2}) = 0.1
+	\end{align*}
+	Since we are only given $(E_{\text{out}} - E_{\text{in}})$, we will similar values for both scenarios- however, one demonstrates overfitting, and the other does not. Thus, we cannot always determine the presence of overfitting given $(E_{\text{out}} - E_{\text{in}})$.
+
+	\subparagraph{[e]} \textit{True}: We cannot determine overfitting based on one hypothesis only. 
+
+\paragraph{4.} [d] \textit{is true}
+
+	\subparagraph{[a]} \textit{False}: Deterministic noise can occur with stochastic noise- the two are not existentially dependent.
+
+	\subparagraph{[b]} \textit{False}: Deterministic noise depends on the hypothesis set, because we can construct certain hypothesis sets $\mathcal H$ that are prone to high deterministic noise. For example, if a hypothesis set $\mathcal H_2$, composed of exclusively second-order polynomials, attempts to fit a tenth-order polynomial target function with noise, then the deterministic noise will likely be high. 
+
+	\subparagraph{[c]} \textit{False}: Deterministic noise depends on the target function, as seen in the lower right-hand graph of the logo of this class. In this graph, the increasing target complexity results in a worse $E_{\text{out}}$, due to deterministic noise. For example, if we have a hypothesis set $\mathcal H_2$, composed of exclusively second-order polynomials, attempting to fit a variety of different $n$-order target functions, some target functions will result in a lower deterministic noise than others.
+
+	\subparagraph{[d]} \textit{True}: Stochastic noise does not depend on the hypothesis set. Stochastic noise is a byproduct of the random flucuations of the given data. For example, stochastic noise may occur where human error is present in measurements performed to create the training data set.
+
+	\subparagraph{[e]} \textit{False}: Stochastic noise does depend on the target function. Stochastic noise is random flucuations of given data set that is formed using the target function. Thus, if the target function changes, we may have different stochastic noise.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Regularization}
+\paragraph{5.} [a] $\bm w_{\reg} = \bm w_{\lin}$
+
+	In the case that the solution for $\bm w_{\lin}$ is already constrained by $\bm w^\tran \Gamma^\tran\Gamma \bm w \leq C$, then we simply use that value of $\bm w_{\lin}$ as our regularized weight, $\bm w_{\reg}$. This is because $\bm w_{\lin}$ is also found by minimizing $\frac{1}{N} \sum_{n=1}^N (\bm w^\tran \bm x_n- y_n)^2 $, so if $\bm w_{\lin}$ satisfies the constraint as well, then $\bm w_{\reg} = \bm w_{\lin}$.
+
+\paragraph{6.} [b] translated into augmented error
+
+	\subparagraph{[a]} Writing a soft-order constraint as a hard-order constraint is not the point of the soft-order constraint.
+
+	\subparagraph{[b]} Soft-order constraints that regularize polynomial models can be translated into augmented error through a series of calculations. 
+	\begin{align*}
+	\text{Minimizing } E_{\text{in}}(\bm w) &= \frac{1}{N} (Z\bm w - \bm y)^\tran(Z\bm w - \bm y) \text{ subject to } \bm w^\tran \bm w \leq C \\
+	\text{Can be solved by }\bm w_{\reg} &= (Z^\tran Z + \lambda I )^{-1}Z^\tran \bm y \text{, with $\lambda$ being the ``amount of regularization''}
+	\end{align*}
+	
+	\subparagraph{[c]} The value of the VC \textit{dimension} does not determine the soft-order constraint. However, the VC \textit{formulation} is equivalent to a soft-order constraint. 
+	
+	\subparagraph{[d]} Using soft-order constraints may result in an \textit{increased} $E_{\text{in}}$ and decreased $E_{\text{out}}$ simultaneously. (This is kind of the goal of soft-order constraints.)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Regularized Linear Regression}
+\paragraph{7.} 
+\paragraph{8.} 
+\paragraph{9.} 
+\paragraph{10.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Support Vector Machines}
+\paragraph{11.} 
+\paragraph{12.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Radial Basis Functions}
+\paragraph{13.} 
+\paragraph{14.} 
+\paragraph{15.} 
+\paragraph{16.} 
+\paragraph{17.} 
+\paragraph{18.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Bayesian Priors}
+\paragraph{19.} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Aggregation}
+\paragraph{20.} [c] $E_{\text{out}}(g)$ cannot be worse than the average of $E_{\text{out}}(g_1)$ and $E_{\text{out}}(g_2)$ \textit{is true} \textbf{NOTE: Expand on [c]}
+
+	\subparagraph{[a]} \textit{False}: $E_{\text{out}}(g)$ can be worse than $E_{\text{out}}(g_1)$. Consider the case where $g_2$ is consistently farther from the target $y = f(\bm x)$ for $\bm x \in \chi$ than $g_1$ is. Then, taking the average of outputs, $E_{\text{out}}(g)$, would be greater than $E_{\text{out}}(g_1)$.
+
+	\subparagraph{[b]} \textit{False}: $E_{\text{out}}(g)$ can be worse than the minimum of $E_{\text{out}}(g_1)$ and $E_{\text{out}}(g_2)$. Consider the minimum to be that of $g_{\text{min}}$, which is either $g_1$ or $g_2$. The other shall be $g_{\text{max}}$. In this case, $g_{\text{min}}$, will, by definition, have a lower $E_{\text{out}}(g_{\text{min}})$ than that of $g_{\text{max}}$. Thus, $g_{\text{max}}$ tends to be farther from the target $y = f(\bm x)$ for $\bm x \in \chi$ than $g_{\text{min}}$ is. Thus, $E_{\text{out}}(g)$ would be greater than $E_{\text{out}}(g_{\text{min}})$.
+	
+	\subparagraph{[c]} \textit{True}: $E_{\text{out}}(g)$ cannot be worse than the average of $E_{\text{out}}(g_1)$ and $E_{\text{out}}(g_2)$ because we are using mean \textit{squared} error. This means that $E_{\text{out}}(g)$, even if higher than $E_{\text{out}}(g_1)$ or $E_{\text{out}}(g_2)$, cannot be worse than their average. 
+	\begin{align*}
+	E_{\text{out}}(g) &= \mathbb E \big[ (f(\bm x) - g(\bm x))^2 \big] = \mathbb E \big[ (f(\bm x) - \frac{1}{2}\big( g_1(\bm x) + g_2(\bm x)\big) )^2 \big] \\
+	\frac{1}{2}(E_{\text{out}}(g_1) + E_{\text{out}}(g_2)) & = \frac{1}{2} ( \mathbb E \big[ (f(\bm x) - g_1(\bm x) )^2 \big] + \mathbb E \big[ (f(\bm x) - g_2(\bm x) )^2 \big] )\\
+	& = \frac{1}{2} \mathbb E \big[ (f(\bm x) - g_1(\bm x) )^2 + (f(\bm x) - g_2(\bm x) )^2 \big] \\
+	& = \frac{1}{2} \mathbb E \big[ \big(f(\bm x)^2 - 2f(\bm x)g_1(\bm x) + g_1(\bm x)^2 \big) + \big(f(\bm x)^2 - 2f(\bm x)g_2(\bm x) + g_2(\bm x)^2 \big) \big] \\
+	& = \frac{1}{2} \mathbb E \big[ 2f(\bm x)^2 - 2f(\bm x)\big(g_1(\bm x) + g_2(\bm x)\big) + g_1(\bm x)^2 + g_2(\bm x)^2  \big] \\
+	& = \mathbb E \big[ f(\bm x)^2 - f(\bm x)\big(g_1(\bm x) + g_2(\bm x)\big) + \frac{1}{2}g_1(\bm x)^2 + \frac{1}{2}g_2(\bm x)^2  \big] \\
+	& = \mathbb E \big[ f(\bm x)^2 - 2f(\bm x)\frac{1}{2}\big(g_1(\bm x) + g_2(\bm x)\big) + \frac{1}{2}\big(g_1(\bm x)^2 + g_2(\bm x)^2\big)  \big] \\
+	& = \mathbb E \big[ f(\bm x)^2 - 2f(\bm x)\frac{1}{2}\big(g_1(\bm x) + g_2(\bm x)\big) + \frac{1}{2}\big(g_1(\bm x)^2 + 2g_1(\bm x)g_2(\bm x)+ g_2(\bm x)^2\big) - g_1(\bm x)g_2(\bm x)\big] \\
+	& = \mathbb E \big[ f(\bm x)^2 - 2f(\bm x)\frac{1}{2}\big(g_1(\bm x) + g_2(\bm x)\big) + \frac{1}{4}\big( g_1(\bm x) + g_2(\bm x)  \big)^2 + \frac{1}{4}\big( g_1(\bm x) + g_2(\bm x)  \big)^2 - g_1(\bm x)g_2(\bm x)\big] \\
+	& = \mathbb E \big[ f(\bm x)^2 - 2f(\bm x)g(\bm x) + g(\bm x)^2 + \frac{1}{4}\big( g_1(\bm x) + g_2(\bm x)  \big)^2 - g_1(\bm x)g_2(\bm x)\big] \\
+	& = \mathbb E \big[ (f(\bm x) - g(\bm x))^2 + \frac{1}{4}\big( g_1(\bm x) + g_2(\bm x)  \big)^2 - g_1(\bm x)g_2(\bm x)\big] \\
+	& = \mathbb E \big[ (f(\bm x) - g(\bm x))^2 \big] +  \mathbb E \big[  \frac{1}{4}\big( g_1(\bm x) + g_2(\bm x)  \big)^2 - g_1(\bm x)g_2(\bm x) \big] \\
+	& = E_{\text{out}}(g) +  \mathbb E \big[  \frac{1}{4}\big( g_1(\bm x) + g_2(\bm x)  \big)^2 - g_1(\bm x)g_2(\bm x) \big] \\
+	& = E_{\text{out}}(g) +  \mathbb E \big[  \frac{1}{4}( g_1(\bm x) - g_2(\bm x))^2 \big] 
+	\end{align*}
+	We use the linearity of expected values in the above calculation; $\mathbb E[u] + \mathbb E[v] = \mathbb E [u+v]$. Now, it suffices to show that $\mathbb E \big[  \frac{1}{4}( g_1(\bm x) - g_2(\bm x))^2 \big]  \geq 0$. 
+	\begin{align*}
+	\mathbb E \big[  \frac{1}{4}( g_1(\bm x) - g_2(\bm x))^2 \big]  &\geq 0 \\
+	( g_1(\bm x) - g_2(\bm x))^2 &\geq 0 \\
+	b =  g_1(\bm x) - g_2(\bm x) \\
+	b^2 &\geq 0
+	\end{align*}
+	Thus, we have that  $E_{\text{out}}(g)$ cannot be worse than the average of $E_{\text{out}}(g_1)$ and $E_{\text{out}}(g_2)$.
+
+	\subparagraph{[d]} \textit{False}: $E_{\text{out}}(g)$ does not have to fall between the inclusive interval $[E_{\text{out}}(g_1), E_{\text{out}}(g_2)]$. For example if $g_1$ is consistently overestimating the target $y = f(\bm x)$ for $\bm x \in \chi$, and $g_1$ is consistently underestimating the target $y$, then taking the average by $g(\bm x) = \frac{1}{2}(g_1(\bm x) + g_2(\bm x))$ may result in an $E_{\text{out}}(g)$ that is lower than that of both $E_{\text{out}}(g_1)$ and $E_{\text{out}}(g_2)$.
+
+
+
+
+\end{document}
+
