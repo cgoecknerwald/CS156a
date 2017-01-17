@@ -14,3 +14,8 @@ Here, I created a Python script to implement the perceptron learning algorithm o
 ### Set 5: Gradient Descent and Logistic Regression
 
 ### Set 6: Overfitting, Stochastic and Deterministic Noise, Regularization, and Neural Networks
+
+### Set 7: Validation Bias, Cross Validation, PLA vs SVM
+
+### Set 8: Primal vs Dual Problem, SVM with soft margins, Polynomial Kernels, RBF Kernels, Cross Validation
+
